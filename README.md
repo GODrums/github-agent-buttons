@@ -1,4 +1,4 @@
-# PR Comment → Agent
+# Agent Buttons for GitHub
 
 Chrome extension (Manifest V3, no build step) that adds three icon buttons to every review thread on GitHub pull requests:
 

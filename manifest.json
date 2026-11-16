@@ -1,6 +1,6 @@
 {
   "manifest_version": 3,
-  "name": "PR Comment → Agent",
+  "name": "Agent Buttons for GitHub",
   "version": "0.3.0",
   "description": "Adds T3 Code, Cursor and copy-prompt buttons to GitHub pull request review comments.",
   "icons": {
