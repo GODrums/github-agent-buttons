@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>PR Comment → Agent</title>
+<style>
+  :root { color-scheme: light dark; --fg:#1f2328; --muted:#59636e; --bg:#fff; --border:#d1d9e0; --accent:#0969da; --ok:#1a7f37; }
+  @media (prefers-color-scheme: dark) { :root { --fg:#f0f6fc; --muted:#9198a1; --bg:#0d1117; --border:#3d444d; --accent:#4493f8; --ok:#3fb950; } }
+  body { margin:0; background:var(--bg); color:var(--fg); font:14px/1.5 -apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif; }
+  main { max-width:640px; margin:0 auto; padding:32px 16px 64px; }
+  h1 { font-size:20px; margin:0 0 4px; }
+  h2 { font-size:15px; margin:28px 0 8px; }
+  p.lead, .hint { color:var(--muted); }
+  .hint { font-size:12px; margin:4px 0 0; }
+  label { display:block; font-weight:600; margin-top:14px; }
+  input, textarea { box-sizing:border-box; width:100%; margin-top:4px; padding:6px 8px; border:1px solid var(--border); border-radius:6px; background:transparent; color:inherit; font:13px ui-monospace,SFMono-Regular,Menlo,monospace; }
+  textarea { min-height:84px; resize:vertical; }
+  .row { display:flex; gap:12px; } .row > div { flex:1; min-width:0; }
+  button { margin-top:20px; padding:6px 14px; border-radius:6px; border:1px solid var(--border); background:var(--accent); color:#fff; font-weight:600; cursor:pointer; }
+  #status { margin-left:10px; font-size:13px; }
+  #status.ok { color:var(--ok); }
+  a { color:var(--accent); }
+  @media (max-width:520px) { .row { flex-direction:column; gap:0; } }
+</style>
+</head>
+<body>
+<main>
+  <h1>PR Comment → Agent</h1>
+  <p class="lead">Settings for the T3 Code, Cursor and copy buttons on pull request review comments.</p>
+
+
+  <h2>Prompt</h2>
+  <label for="instruction">Instruction at the end of the prompt</label>
+  <textarea id="instruction" spellcheck="true"></textarea>
+  <p class="hint">Leave empty to use the default.</p>
+
+  <h2>T3 Code</h2>
+  <div class="row">
+    <div><label for="t3Provider">Provider (optional)</label><input id="t3Provider" placeholder="claude"></div>
+    <div><label for="t3Model">Model (optional)</label><input id="t3Model" placeholder="claude-opus-5-5"></div>
+  </div>
+  <p class="hint">The thread opens in the T3 Code project that matches the GitHub repository, as a draft. Nothing runs until you press Send.</p>
+
+  <h2>Cursor</h2>
+  <label for="cursorWorkspaces">Repository → workspace folder name</label>
+  <textarea id="cursorWorkspaces" spellcheck="false" placeholder="owner/repo = local-folder-name"></textarea>
+  <p class="hint">Cursor sends the prompt to the open window whose folder name matches. By default that is the repository name; add a line here when your local folder is named differently.</p>
+
+  <button id="save" type="button">Save</button><span id="status" role="status"></span>
+</main>
+<script src="src/prompt.js"></script>
+<script src="src/options.js"></script>
+</body>
+</html>
